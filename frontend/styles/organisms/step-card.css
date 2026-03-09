@@ -74,7 +74,11 @@
   padding: var(--sp-1) 0;
 }
 .step-card__title-input::placeholder { color: var(--text-tertiary); }
-.step-card__title-input:focus { border-bottom: 2px solid var(--secondary-base); }
+.step-card__title-input:focus,
+.step-card__title-input:focus-visible {
+  border-bottom: 2px solid var(--secondary-base);
+  box-shadow: 0 2px 0 0 var(--secondary-base);
+}
 
 .step-card__delete {
   position: absolute;
@@ -103,7 +107,11 @@
   line-height: 1.5;
 }
 .step-card__desc-input::placeholder { color: var(--text-tertiary); }
-.step-card__desc-input:focus { border-bottom: 1px solid var(--border); }
+.step-card__desc-input:focus,
+.step-card__desc-input:focus-visible {
+  border-bottom: 2px solid var(--secondary-base);
+  box-shadow: 0 2px 0 0 var(--secondary-base);
+}
 
 .step-card__dimensions {
   margin-top: var(--sp-3);

@@ -11,7 +11,7 @@
  */
 
 const CONFIG = Object.freeze({
-  API_BASE: "",
+  API_BASE: "/api/v1",
   CONTEXT_TYPES: Object.freeze([
     "Process / Workflow",
     "Service Design",

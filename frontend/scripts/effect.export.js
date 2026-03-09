@@ -34,7 +34,11 @@ async function _handleExport() {
   const btn = document.getElementById("btn-export-pdf");
   if (btn) {
     btn.disabled = true;
-    btn.innerHTML = '<div class="spinner"></div> Exporting&hellip;';
+    btn.replaceChildren();
+    const spinner = document.createElement("div");
+    spinner.className = "spinner";
+    btn.appendChild(spinner);
+    btn.appendChild(document.createTextNode(" Exporting…"));
   }
 
   const url = `${CONFIG.API_BASE}/export`;
@@ -75,7 +79,7 @@ async function _handleExport() {
   } finally {
     if (btn) {
       btn.disabled = false;
-      btn.innerHTML = "Export PDF";
+      btn.textContent = "Export PDF";
     }
   }
 }

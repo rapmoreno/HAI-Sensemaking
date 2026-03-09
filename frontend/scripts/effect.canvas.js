@@ -123,7 +123,11 @@ async function _handleAnalyse() {
   updateState((s) => ({ ...s, analysing: true }));
   if (btnAnalyse) {
     btnAnalyse.disabled = true;
-    btnAnalyse.innerHTML = '<div class="spinner"></div> Analysing...';
+    btnAnalyse.replaceChildren();
+    const spinner = document.createElement("div");
+    spinner.className = "spinner";
+    btnAnalyse.appendChild(spinner);
+    btnAnalyse.appendChild(document.createTextNode(" Analysing…"));
   }
 
   try {
@@ -154,7 +158,7 @@ async function _handleAnalyse() {
   } finally {
     updateState((s) => ({ ...s, analysing: false }));
     if (btnAnalyse) {
-      btnAnalyse.innerHTML = "Analyse";
+      btnAnalyse.textContent = "Analyse";
     }
     _updateAnalyseButton();
   }
@@ -170,7 +174,7 @@ function _render() {
 
   if (emptyState) emptyState.style.display = hasSteps ? "none" : "block";
 
-  container.innerHTML = "";
+  container.replaceChildren();
 
   state.steps.forEach((step, idx) => {
     const card = document.createElement("div");

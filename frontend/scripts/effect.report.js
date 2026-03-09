@@ -9,7 +9,6 @@
  *   - effect.error.js (error handling)
  *   - effect.export.js (PDF export)
  *   - config.js (API_BASE)
- *   - pure.render.js (escapeHtml)
  *
  * Used by: main.js
  * Side effects: DOM writes, HTTP requests, sessionStorage reads
@@ -18,7 +17,6 @@
 import { handleError } from "./effect.error.js";
 import { initExport } from "./effect.export.js";
 import { CONFIG } from "./config.js";
-import { escapeHtml } from "./pure.render.js";
 
 let _canvasState = null;
 let _reportData = null;
@@ -103,29 +101,39 @@ function _renderReport(report) {
   if (trust) trust.textContent = report.trust_summary || "";
 
   if (stepsBody) {
-    stepsBody.innerHTML = "";
+    stepsBody.replaceChildren();
     const steps = report.step_analyses || [];
     steps.forEach((sa) => {
       const mainRow = document.createElement("tr");
-      mainRow.innerHTML = `
-        <td class="step-row__title">${escapeHtml(sa.title || "")}</td>
-        <td>${escapeHtml(sa.task_allocation || "")}</td>
-        <td>${escapeHtml(sa.risk_level || "")}</td>
-        <td>${escapeHtml(sa.trust_requirement || "")}</td>
-        <td>${escapeHtml(sa.handoff_needed || "")}</td>
-      `;
+      const cells = [
+        sa.title || "",
+        sa.task_allocation || "",
+        sa.risk_level || "",
+        sa.trust_requirement || "",
+        sa.handoff_needed || "",
+      ];
+      cells.forEach((text, i) => {
+        const td = document.createElement("td");
+        if (i === 0) td.className = "step-row__title";
+        td.textContent = text;
+        mainRow.appendChild(td);
+      });
       stepsBody.appendChild(mainRow);
 
       if (sa.summary) {
         const summaryRow = document.createElement("tr");
-        summaryRow.innerHTML = `<td colspan="5" class="step-row__summary">${escapeHtml(sa.summary)}</td>`;
+        const td = document.createElement("td");
+        td.colSpan = 5;
+        td.className = "step-row__summary";
+        td.textContent = sa.summary;
+        summaryRow.appendChild(td);
         stepsBody.appendChild(summaryRow);
       }
     });
   }
 
   if (risks) {
-    risks.innerHTML = "";
+    risks.replaceChildren();
     (report.key_risks || []).forEach((r) => {
       const li = document.createElement("li");
       li.textContent = r;
@@ -134,7 +142,7 @@ function _renderReport(report) {
   }
 
   if (recs) {
-    recs.innerHTML = "";
+    recs.replaceChildren();
     (report.recommendations || []).forEach((r) => {
       const li = document.createElement("li");
       li.textContent = r;
