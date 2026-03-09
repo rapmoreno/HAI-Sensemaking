@@ -58,12 +58,24 @@ async function _fetchReport() {
       body: JSON.stringify({ canvas_state: _canvasState }),
     });
 
-    if (!res.ok) {
-      const detail = await res.json().catch(() => ({ message: res.statusText }));
-      throw new Error(detail.detail?.message || detail.message || `HTTP ${res.status}`);
+    const text = await res.text();
+    let data;
+    try {
+      data = text ? JSON.parse(text) : null;
+    } catch {
+      throw new Error(`Invalid response (${res.status})`);
     }
 
-    _reportData = await res.json();
+    if (!res.ok) {
+      const msg = data?.detail?.message ?? data?.message ?? `HTTP ${res.status}`;
+      throw new Error(msg);
+    }
+
+    if (!data || typeof data !== "object") {
+      throw new Error("Empty or invalid report data");
+    }
+
+    _reportData = data;
     _renderReport(_reportData);
     _showContent();
 

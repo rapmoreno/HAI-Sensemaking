@@ -23,10 +23,16 @@ function initExport(canvasState, reportData) {
   _canvasState = canvasState;
   _reportData = reportData;
 
-  const btn = document.getElementById("btn-export-pdf");
-  if (btn) {
-    btn.disabled = false;
-    btn.addEventListener("click", _handleExport);
+  const btnExport = document.getElementById("btn-export-pdf");
+  if (btnExport) {
+    btnExport.disabled = false;
+    btnExport.addEventListener("click", _handleExport);
+  }
+
+  const btnPrint = document.getElementById("btn-print");
+  if (btnPrint) {
+    btnPrint.disabled = false;
+    btnPrint.addEventListener("click", () => window.print());
   }
 }
 
@@ -54,11 +60,25 @@ async function _handleExport() {
     });
 
     if (!res.ok) {
-      const detail = await res.json().catch(() => ({ message: res.statusText }));
-      throw new Error(detail.detail?.message || detail.message || `HTTP ${res.status}`);
+      const text = await res.text();
+      let msg = `HTTP ${res.status}`;
+      try {
+        const data = text ? JSON.parse(text) : {};
+        msg = data?.detail?.message ?? data?.message ?? msg;
+      } catch {
+        if (text && text.length < 200) msg += ` — ${text}`;
+      }
+      if (res.status === 501) {
+        msg += " Use Print → Save as PDF instead.";
+      }
+      throw new Error(msg);
     }
 
     const blob = await res.blob();
+    if (blob.size === 0) {
+      throw new Error("Export returned empty file. Use Print → Save as PDF instead.");
+    }
+
     const disposition = res.headers.get("Content-Disposition") || "";
     const filenameMatch = disposition.match(/filename="(.+?)"/);
     const filename = filenameMatch ? filenameMatch[1] : "hai-canvas-report.pdf";

@@ -8,6 +8,13 @@
  * Side effects: None
  */
 
+/* --- State visibility --- */
+#report-loading[hidden],
+#report-error[hidden],
+#report-content[hidden] {
+  display: none !important;
+}
+
 /* --- Loading state --- */
 .report-loading {
   display: flex;
@@ -135,6 +142,29 @@
   margin-bottom: var(--sp-2);
   line-height: 1.6;
   color: var(--text-primary);
+}
+
+/* --- Print --- */
+@media print {
+  @page {
+    margin: 15mm;
+  }
+
+  .site-header,
+  .canvas-action-bar,
+  .skip-link {
+    display: none !important;
+  }
+
+  .report {
+    max-width: none;
+    padding: 0;
+  }
+
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
 }
 
 /* --- Responsive --- */
