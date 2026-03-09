@@ -19,7 +19,8 @@ function handleError(module, fn, error, context) {
     context: context || null,
   };
 
-  console.error(`[${module}.${fn}]`, entry.error, context || "");
+  const ctxStr = context ? ` ${JSON.stringify(context)}` : "";
+  console.error(`[${module}.${fn}]`, entry.error, ctxStr);
 
   document.dispatchEvent(
     new CustomEvent("app:error", { detail: entry })

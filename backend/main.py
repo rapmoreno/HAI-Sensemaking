@@ -33,9 +33,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(analyse_router, prefix="/api/v1")
-app.include_router(report_router, prefix="/api/v1")
-app.include_router(export_router, prefix="/api/v1")
+# API sub-app mounted at /api/v1 so it’s checked before static handler (avoids 405)
+api_v1 = FastAPI(title=f"{CONFIG.APP_NAME} API")
+api_v1.include_router(analyse_router)
+api_v1.include_router(report_router)
+api_v1.include_router(export_router)
+app.mount("/api/v1", api_v1)
 
 
 @app.get("/health")

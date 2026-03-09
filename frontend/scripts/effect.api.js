@@ -27,13 +27,22 @@ async function postAnalyse(canvasPayload) {
     });
 
     if (!res.ok) {
-      const detail = await res.json().catch(() => ({ message: res.statusText }));
-      throw new Error(detail.detail?.message || detail.message || `HTTP ${res.status}`);
+      let message = `HTTP ${res.status} ${res.statusText}`;
+      const text = await res.text();
+      try {
+        const body = JSON.parse(text);
+        message = body.detail?.message ?? body.message ?? message;
+      } catch {
+        if (text && text.length < 200) message += ` — ${text}`;
+      }
+      const err = new Error(`${message} (${res.method} ${url})`);
+      handleError("effect.api", "postAnalyse", err, { status: res.status, url });
+      throw err;
     }
 
     return await res.json();
   } catch (error) {
-    handleError("effect.api", "postAnalyse", error);
+    handleError("effect.api", "postAnalyse", error, { url });
     throw error;
   }
 }

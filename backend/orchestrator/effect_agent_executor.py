@@ -78,14 +78,18 @@ def call_agent(agent_id: str, prompt: str) -> str:
 
     client = _get_client()
 
+    create_kwargs: dict[str, Any] = {
+        "model": agent.model,
+        "messages": [{"role": "user", "content": prompt}],
+        "max_tokens": agent.params.max_tokens,
+        "temperature": agent.params.temperature,
+    }
+    if agent.params.hardware_provider:
+        create_kwargs["extra_body"] = {"provider": {"order": [agent.params.hardware_provider]}}
+
     try:
         # Agent: {agent_id} | Model: {agent.model} | Called from: call_agent
-        response = client.chat.completions.create(
-            model=agent.model,
-            messages=[{"role": "user", "content": prompt}],
-            max_tokens=agent.params.max_tokens,
-            temperature=agent.params.temperature,
-        )
+        response = client.chat.completions.create(**create_kwargs)
         return response.choices[0].message.content or ""
 
     except Exception as e:

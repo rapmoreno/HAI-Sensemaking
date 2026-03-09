@@ -12,6 +12,7 @@ agents:
     params:
       temperature: 0
       max_tokens: 4000
+      hardware_provider: groq
     guardrails:
       - output_json_only
       - no_invented_facts
@@ -29,6 +30,7 @@ agents:
     params:
       temperature: 0
       max_tokens: 8000
+      hardware_provider: groq
     guardrails:
       - output_json_only
       - no_invented_facts

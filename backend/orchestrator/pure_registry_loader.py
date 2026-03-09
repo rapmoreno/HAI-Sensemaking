@@ -16,6 +16,7 @@ from dataclasses import dataclass, field
 class AgentParams:
     temperature: float = 0.0
     max_tokens: int = 4000
+    hardware_provider: str | None = None  # OpenRouter routing: groq, anthropic, etc.
 
 
 @dataclass(frozen=True)
@@ -55,6 +56,7 @@ def parse_registry(raw: dict) -> tuple[AgentEntry, ...]:
             params=AgentParams(
                 temperature=params_raw.get("temperature", 0.0),
                 max_tokens=params_raw.get("max_tokens", 4000),
+                hardware_provider=params_raw.get("hardware_provider"),
             ),
             guardrails=tuple(a.get("guardrails", [])),
         )
