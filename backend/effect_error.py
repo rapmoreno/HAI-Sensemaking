@@ -12,7 +12,7 @@ from __future__ import annotations
 import logging
 import traceback
 from datetime import datetime, timezone
-from typing import Any
+from typing import Any, Optional
 
 logger = logging.getLogger("hai_canvas")
 
@@ -22,7 +22,7 @@ def handle_error(
     module: str,
     function: str,
     error: Exception,
-    context: dict[str, Any] | None = None,
+    context: Optional[dict[str, Any]] = None,
 ) -> dict[str, Any]:
     """Log structured error and return error dict."""
     error_dict = {
@@ -57,7 +57,7 @@ def make_http_error(code: str, message: str, status: int) -> dict[str, Any]:
     }
 
 
-def _redact(data: dict[str, Any] | None) -> dict[str, Any] | None:
+def _redact(data: Optional[dict[str, Any]]) -> Optional[dict[str, Any]]:
     """Remove sensitive keys from context before logging."""
     if data is None:
         return None

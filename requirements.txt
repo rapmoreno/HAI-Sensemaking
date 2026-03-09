@@ -3,4 +3,3 @@ uvicorn==0.39.0
 openai==2.26.0
 python-dotenv==1.2.1
 PyYAML==6.0.3
-weasyprint==66.0

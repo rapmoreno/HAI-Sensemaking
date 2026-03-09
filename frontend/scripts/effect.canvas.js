@@ -24,9 +24,14 @@ import { postAnalyse } from "./effect.api.js";
 import { initFacilitated, advanceToReport } from "./effect.facilitated.js";
 import {
   addStep,
+  addSplit,
+  addBranch,
   deleteStep,
+  deleteBranch,
   updateStepField,
+  updateBranchField,
   reorderSteps,
+  flattenStepsForAnalysis,
   mergeAnalysisResults,
   canAnalyse,
 } from "./pure.canvas.js";
@@ -90,6 +95,10 @@ function _wireGlobalListeners() {
   if (btnAdd) {
     btnAdd.addEventListener("click", _handleAddStep);
   }
+  const btnAddSplit = document.getElementById("btn-add-split");
+  if (btnAddSplit) {
+    btnAddSplit.addEventListener("click", _handleAddSplit);
+  }
   if (btnAnalyse) {
     btnAnalyse.addEventListener("click", _handleAnalyse);
   }
@@ -117,6 +126,18 @@ function _handleAddStep() {
   }
 }
 
+function _handleAddSplit() {
+  updateState((s) => addSplit(s, _nextStepId++));
+  _render();
+
+  const container = document.getElementById("steps-container");
+  const lastCard = container ? container.lastElementChild : null;
+  if (lastCard) {
+    const firstCond = lastCard.querySelector(".split-branch__condition");
+    if (firstCond) firstCond.focus();
+  }
+}
+
 async function _handleAnalyse() {
   const btnAnalyse = document.getElementById("btn-analyse");
 
@@ -132,15 +153,17 @@ async function _handleAnalyse() {
 
   try {
     const state = getState();
+    const flatSteps = flattenStepsForAnalysis(state.steps);
     const payload = {
       process_name: state.process_name,
       context_description: state.context_description,
       context_type: state.context_type,
-      steps: state.steps.map((s) => ({
+      steps: flatSteps.map((s) => ({
         id: s.id,
         title: s.title,
         description: s.description,
         ownership: s.ownership,
+        ...(s.branchContext && { branch_context: s.branchContext }),
       })),
     };
 
@@ -180,9 +203,14 @@ function _render() {
     const card = document.createElement("div");
     card.className = "step-card";
     card.dataset.stepId = step.id;
+    card.dataset.stepType = step.type || "step";
     card.innerHTML = renderStepCardHtml(step, idx);
 
-    _wireCardEvents(card, step);
+    if ((step.type || "step") === "split") {
+      _wireSplitCardEvents(card, step);
+    } else {
+      _wireCardEvents(card, step);
+    }
     container.appendChild(card);
   });
 }
@@ -240,6 +268,94 @@ function _wireCardEvents(card, step) {
     const s = state.steps.find((st) => st.id === step.id);
     if (s && s.title && !confirm(`Delete "${s.title}"?`)) return;
     updateState((st) => deleteStep(st, step.id));
+    _render();
+  });
+}
+
+function _wireSplitCardEvents(card, split) {
+  const handle = card.querySelector(".step-card__handle");
+  if (handle) {
+    handle.addEventListener("dragstart", (e) => {
+      _draggedId = split.id;
+      e.dataTransfer.effectAllowed = "move";
+      card.classList.add("dragging");
+    });
+    handle.addEventListener("dragend", () => {
+      _draggedId = null;
+      document.querySelectorAll(".step-card").forEach((c) => {
+        c.classList.remove("dragging", "drag-over");
+      });
+    });
+  }
+
+  card.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = "move";
+    card.classList.add("drag-over");
+  });
+  card.addEventListener("dragleave", () => card.classList.remove("drag-over"));
+  card.addEventListener("drop", (e) => {
+    e.preventDefault();
+    card.classList.remove("drag-over");
+    if (_draggedId && _draggedId !== split.id) {
+      updateState((s) => reorderSteps(s, _draggedId, split.id));
+      _render();
+    }
+  });
+
+  card.querySelectorAll(".split-branch__condition").forEach((input) => {
+    input.addEventListener("input", (e) => {
+      updateState((s) =>
+        updateBranchField(s, split.id, e.target.dataset.branchId, "condition", e.target.value)
+      );
+    });
+  });
+  card.querySelectorAll(".split-branch__title").forEach((input) => {
+    input.addEventListener("input", (e) => {
+      updateState((s) =>
+        updateBranchField(s, split.id, e.target.dataset.branchId, "title", e.target.value)
+      );
+    });
+  });
+  card.querySelectorAll(".split-branch__desc").forEach((textarea) => {
+    textarea.addEventListener("input", (e) => {
+      updateState((s) =>
+        updateBranchField(s, split.id, e.target.dataset.branchId, "description", e.target.value)
+      );
+    });
+  });
+  card.querySelectorAll(".split-branch").forEach((branchEl) => {
+    branchEl.querySelectorAll(".ownership-pill").forEach((pill) => {
+      pill.addEventListener("click", () => {
+        const branchId = pill.dataset.branchId;
+        updateState((s) =>
+          updateBranchField(s, split.id, branchId, "ownership", pill.dataset.value)
+        );
+        branchEl.querySelectorAll(".ownership-pill").forEach((p) => {
+          p.classList.toggle("active", p.dataset.value === pill.dataset.value);
+        });
+      });
+    });
+    const delBtn = branchEl.querySelector(".split-branch__delete");
+    if (delBtn) {
+      delBtn.addEventListener("click", () => {
+        const branchId = delBtn.dataset.branchId;
+        if (!confirm("Remove this branch?")) return;
+        updateState((s) => deleteBranch(s, split.id, branchId));
+        _render();
+      });
+    }
+  });
+  const addBranchBtn = card.querySelector(".split-add-branch");
+  if (addBranchBtn) {
+    addBranchBtn.addEventListener("click", () => {
+      updateState((s) => addBranch(s, split.id));
+      _render();
+    });
+  }
+  card.querySelector(".step-card__delete").addEventListener("click", () => {
+    if (!confirm("Delete this split and all its branches?")) return;
+    updateState((s) => deleteStep(s, split.id));
     _render();
   });
 }

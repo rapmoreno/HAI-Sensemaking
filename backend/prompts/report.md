@@ -29,7 +29,7 @@ The JSON must match this exact structure:
   "step_analyses": [
     {
       "step_id": "step_1",
-      "title": "Step title",
+      "title": "Step title (or for split branches: include the branch condition, e.g. 'If staff: Staff handles complaint')",
       "summary": "2-3 sentence synthesis of all dimension findings for this step.",
       "task_allocation": "Human/AI/Both — with brief rationale",
       "risk_level": "Low/Medium/High — with brief rationale",

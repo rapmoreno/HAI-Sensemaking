@@ -15,7 +15,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
@@ -34,6 +34,7 @@ class StepInput(BaseModel):
     title: str
     description: str
     ownership: str
+    branch_context: Optional[str] = None
 
 
 class AnalyseRequest(BaseModel):
@@ -56,7 +57,8 @@ def _build_prompt(req: AnalyseRequest, dimensions: List[Dict[str, Any]]) -> str:
 
     steps_text = ""
     for s in req.steps:
-        steps_text += f"- **{s.id}** | Title: {s.title} | Description: {s.description} | Current ownership: {s.ownership}\n"
+        branch_ctx = f" [Branch: {s.branch_context}]" if s.branch_context else ""
+        steps_text += f"- **{s.id}**{branch_ctx} | Title: {s.title} | Description: {s.description} | Current ownership: {s.ownership}\n"
 
     dims_text = ""
     for d in dimensions:

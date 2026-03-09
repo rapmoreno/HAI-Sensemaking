@@ -10,13 +10,14 @@ Side effects: None
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from typing import Optional
 
 
 @dataclass(frozen=True)
 class AgentParams:
     temperature: float = 0.0
     max_tokens: int = 4000
-    hardware_provider: str | None = None  # OpenRouter routing: groq, anthropic, etc.
+    hardware_provider: Optional[str] = None  # OpenRouter routing: groq, anthropic, etc.
 
 
 @dataclass(frozen=True)
@@ -65,7 +66,7 @@ def parse_registry(raw: dict) -> tuple[AgentEntry, ...]:
     return tuple(entries)
 
 
-def find_agent(agents: tuple[AgentEntry, ...], agent_id: str) -> AgentEntry | None:
+def find_agent(agents: tuple[AgentEntry, ...], agent_id: str) -> Optional[AgentEntry]:
     """Look up agent by id. Returns None if not found or disabled."""
     for a in agents:
         if a.id == agent_id and a.enabled:

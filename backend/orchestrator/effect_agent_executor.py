@@ -16,7 +16,7 @@ Side effects: HTTP calls to LLM provider, filesystem reads
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Any
+from typing import Any, Optional
 
 import yaml
 from openai import OpenAI
@@ -29,8 +29,8 @@ from backend.orchestrator.pure_registry_loader import (
     parse_registry,
 )
 
-_registry: tuple[AgentEntry, ...] | None = None
-_client: OpenAI | None = None
+_registry: Optional[tuple[AgentEntry, ...]] = None
+_client: Optional[OpenAI] = None
 
 
 def _get_registry() -> tuple[AgentEntry, ...]:
