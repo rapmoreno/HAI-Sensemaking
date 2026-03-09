@@ -1,0 +1,34 @@
+/**
+ * Module: molecules/badge.css
+ * Type: Molecule
+ * Purpose: Dimension badges with semantic color variants
+ *
+ * Depends on: atoms/tokens-semantic.css
+ * Used by: Step card dimension results
+ * Side effects: None
+ */
+
+.dimension-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--sp-1) var(--sp-2);
+  border-radius: var(--radius-full);
+  font-size: var(--raw-text-xs);
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Ownership */
+.dimension-badge--Human { background: var(--dim-human-bg); color: var(--dim-human-text); }
+.dimension-badge--AI { background: var(--dim-ai-bg); color: var(--dim-ai-text); }
+.dimension-badge--Both { background: var(--dim-both-bg); color: var(--dim-both-text); }
+
+/* Traffic light */
+.dimension-badge--Low { background: var(--dim-low-bg); color: var(--dim-low-text); }
+.dimension-badge--Medium { background: var(--dim-medium-bg); color: var(--dim-medium-text); }
+.dimension-badge--High { background: var(--dim-high-bg); color: var(--dim-high-text); }
+
+/* Boolean */
+.dimension-badge--Yes { background: var(--dim-yes-bg); color: var(--dim-yes-text); }
+.dimension-badge--No { background: var(--dim-no-bg); color: var(--dim-no-text); }

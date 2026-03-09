@@ -1,0 +1,41 @@
+/**
+ * Module: organisms/site-header.css
+ * Type: Organism
+ * Purpose: Site header layout — logo, mode badge
+ *
+ * Depends on: atoms/tokens-semantic.css
+ * Used by: All pages
+ * Side effects: None
+ */
+
+.site-header {
+  padding: var(--sp-4) var(--sp-6);
+  background: var(--primary-base);
+  color: var(--text-inverse);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.site-header__logo {
+  font-size: var(--raw-text-lg);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  color: var(--text-inverse);
+}
+
+.site-header__logo span {
+  color: var(--secondary-base);
+}
+
+.site-header__badge {
+  font-size: var(--raw-text-xs);
+  padding: var(--sp-1) var(--sp-2);
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--secondary-light);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}

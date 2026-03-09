@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CanvasReportResponse",
+  "type": "object",
+  "required": ["title", "executive_summary", "process_overview", "step_analyses", "key_risks", "recommendations", "trust_summary"],
+  "properties": {
+    "title": { "type": "string" },
+    "executive_summary": { "type": "string" },
+    "process_overview": { "type": "string" },
+    "step_analyses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["step_id", "title", "summary"],
+        "properties": {
+          "step_id": { "type": "string" },
+          "title": { "type": "string" },
+          "summary": { "type": "string" },
+          "task_allocation": { "type": "string" },
+          "risk_level": { "type": "string" },
+          "trust_requirement": { "type": "string" },
+          "handoff_needed": { "type": "string" }
+        }
+      }
+    },
+    "key_risks": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "recommendations": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "trust_summary": { "type": "string" }
+  }
+}

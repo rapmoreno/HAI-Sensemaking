@@ -1,0 +1,98 @@
+/**
+ * Module: atoms/tokens-semantic.css
+ * Type: Atom
+ * Purpose: Semantic role mappings — molecules and organisms consume ONLY these
+ *
+ * Depends on: atoms/tokens.css
+ * Used by: All molecules and organisms
+ * Side effects: None
+ */
+
+:root {
+  /* --- Layer 1: Global (structural roles) --- */
+  --text-primary: var(--raw-navy);
+  --text-secondary: var(--raw-grey-500);
+  --text-tertiary: var(--raw-grey-400);
+  --text-inverse: var(--raw-white);
+  --text-link: var(--raw-amber-dark);
+
+  --bg-page: var(--raw-grey-50);
+  --bg-surface: var(--raw-white);
+  --bg-elevated: var(--raw-white);
+  --bg-muted: var(--raw-grey-100);
+
+  --border: var(--raw-grey-200);
+  --border-strong: var(--raw-grey-300);
+  --shadow: var(--raw-shadow-sm);
+  --shadow-raised: var(--raw-shadow-md);
+  --shadow-overlay: var(--raw-shadow-lg);
+
+  /* --- Layer 2: Brand --- */
+  --primary-light: var(--raw-navy-muted);
+  --primary-base: var(--raw-navy);
+  --primary-dark: var(--raw-navy);
+
+  --secondary-light: var(--raw-amber-light);
+  --secondary-base: var(--raw-amber);
+  --secondary-dark: var(--raw-amber-dark);
+
+  /* --- Layer 3: Status --- */
+  --error-light: var(--raw-red-tint);
+  --error-base: var(--raw-red);
+  --error-dark: #991B1B;
+
+  --success-light: #DCFCE7;
+  --success-base: var(--raw-green);
+  --success-dark: #166534;
+
+  --warning-light: var(--raw-amber-tint);
+  --warning-base: var(--raw-amber);
+  --warning-dark: #92400E;
+
+  --info-light: #DBEAFE;
+  --info-base: var(--raw-blue);
+  --info-dark: #1E40AF;
+
+  /* --- Dimension badges --- */
+  --dim-human-bg: var(--raw-blue-tint);
+  --dim-human-text: var(--raw-blue);
+  --dim-ai-bg: var(--raw-purple-tint);
+  --dim-ai-text: var(--raw-purple);
+  --dim-both-bg: var(--raw-teal-tint);
+  --dim-both-text: var(--raw-teal);
+
+  --dim-low-bg: var(--raw-green-tint);
+  --dim-low-text: var(--raw-green);
+  --dim-medium-bg: var(--raw-amber-tint);
+  --dim-medium-text: var(--raw-amber);
+  --dim-high-bg: var(--raw-red-tint);
+  --dim-high-text: var(--raw-red);
+
+  --dim-yes-bg: var(--raw-orange-tint);
+  --dim-yes-text: var(--raw-orange);
+  --dim-no-bg: var(--raw-grey-100);
+  --dim-no-text: var(--raw-grey-400);
+
+  /* --- Shared aliases --- */
+  --font-body: var(--raw-font-body);
+  --font-mono: var(--raw-font-mono);
+  --radius-sm: var(--raw-radius-sm);
+  --radius-md: var(--raw-radius-md);
+  --radius-lg: var(--raw-radius-lg);
+  --radius-xl: var(--raw-radius-xl);
+  --radius-full: var(--raw-radius-full);
+  --sp-1: var(--raw-sp-1);
+  --sp-2: var(--raw-sp-2);
+  --sp-3: var(--raw-sp-3);
+  --sp-4: var(--raw-sp-4);
+  --sp-5: var(--raw-sp-5);
+  --sp-6: var(--raw-sp-6);
+  --sp-8: var(--raw-sp-8);
+  --sp-10: var(--raw-sp-10);
+  --sp-12: var(--raw-sp-12);
+  --sp-16: var(--raw-sp-16);
+  --sp-20: var(--raw-sp-20);
+  --ease-out: var(--raw-ease-out);
+  --duration-fast: var(--raw-duration-fast);
+  --duration-normal: var(--raw-duration-normal);
+}

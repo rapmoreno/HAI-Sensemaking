@@ -1,0 +1,17 @@
+/**
+ * Module: reset.css
+ * Type: Reset
+ * Purpose: Browser reset — do not modify
+ *
+ * Depends on: Nothing
+ * Used by: All pages (loaded before main.css)
+ * Side effects: None
+ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+img, svg { display: block; max-width: 100%; }
+button { cursor: pointer; font: inherit; border: none; background: none; }
+input, textarea, select { font: inherit; }
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }

@@ -1,0 +1,73 @@
+<!-- No inline or internal CSS styles are allowed. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Canvas — HAI Sensemaking</title>
+  <meta name="description" content="Canvas workspace for mapping human-AI collaboration.">
+  <meta name="robots" content="noindex">
+
+  <link rel="stylesheet" href="/styles/reset.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+  <noscript><p>This site requires JavaScript to function. Please enable JavaScript in your browser.</p></noscript>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="page-wrapper">
+    <header class="site-header">
+      <a href="/" class="site-header__logo">HAI <span>Canvas</span></a>
+      <div id="mode-badge" class="site-header__badge"></div>
+    </header>
+
+    <main id="main-content" class="site-main">
+      <div class="canvas-layout">
+        <aside class="canvas-sidebar">
+          <section class="sidebar-section">
+            <h2 class="sidebar-section__title">Process Details</h2>
+            <div class="field-group">
+              <label class="field-label" for="process-name">Process Name</label>
+              <input id="process-name" class="field-input" type="text" placeholder="e.g. Customer Complaint Resolution">
+            </div>
+            <div class="field-group">
+              <label class="field-label" for="context-desc">Context Description</label>
+              <textarea id="context-desc" class="field-textarea" placeholder="Describe the process and its context..."></textarea>
+            </div>
+            <div class="field-group">
+              <label class="field-label" for="context-type">Context Type</label>
+              <select id="context-type" class="field-select"></select>
+            </div>
+          </section>
+        </aside>
+
+        <div class="canvas-main">
+          <div id="steps-container" class="canvas-steps"></div>
+
+          <div id="empty-state" class="canvas-empty">
+            <div class="canvas-empty__icon" aria-hidden="true">&#9634;</div>
+            <p class="canvas-empty__text">No steps yet</p>
+            <p class="canvas-empty__hint">Add your first step to start mapping human-AI responsibilities.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <nav class="canvas-action-bar" aria-label="Canvas actions">
+      <div class="action-bar__left">
+        <button id="btn-add-step" class="btn btn-secondary" type="button">+ Add Step</button>
+      </div>
+      <div class="action-bar__right">
+        <button id="btn-analyse" class="btn btn-accent" type="button" disabled>Analyse</button>
+        <button id="btn-report" class="btn btn-primary" type="button" disabled>Generate Report</button>
+      </div>
+    </nav>
+  </div>
+
+  <script type="module" src="/scripts/main.js" defer></script>
+</body>
+</html>

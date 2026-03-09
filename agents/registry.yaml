@@ -1,0 +1,35 @@
+agents:
+  - id: canvas_analyser
+    name: Canvas Analyser
+    version: 0.1.0
+    enabled: true
+    provider: openrouter
+    model: meta-llama/llama-3.3-70b-instruct
+    description: Analyse process steps across human-AI collaboration dimensions.
+    tags: [analysis, dimensions]
+    prompt_file: prompts/analyse.md
+    output_schema: schemas/analyse.schema.json
+    params:
+      temperature: 0
+      max_tokens: 4000
+    guardrails:
+      - output_json_only
+      - no_invented_facts
+
+  - id: report_generator
+    name: Report Generator
+    version: 0.1.0
+    enabled: true
+    provider: openrouter
+    model: meta-llama/llama-3.3-70b-instruct
+    description: Generate professional structured report from analysed canvas state.
+    tags: [report, synthesis]
+    prompt_file: prompts/report.md
+    output_schema: schemas/report.schema.json
+    params:
+      temperature: 0
+      max_tokens: 8000
+    guardrails:
+      - output_json_only
+      - no_invented_facts
+      - preserve_original_wording

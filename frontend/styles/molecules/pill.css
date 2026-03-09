@@ -1,0 +1,45 @@
+/**
+ * Module: molecules/pill.css
+ * Type: Molecule
+ * Purpose: Ownership segmented control pills
+ *
+ * Depends on: atoms/tokens-semantic.css
+ * Used by: Step card ownership selector
+ * Side effects: None
+ */
+
+.ownership-pills {
+  display: flex;
+  gap: var(--sp-1);
+}
+
+.ownership-pill {
+  padding: var(--sp-1) var(--sp-3);
+  border-radius: var(--radius-full);
+  font-size: var(--raw-text-xs);
+  font-weight: 600;
+  border: 1.5px solid var(--border);
+  color: var(--text-secondary);
+  background: var(--bg-surface);
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.ownership-pill:hover { border-color: var(--border-strong); }
+
+.ownership-pill[data-value="Human"].active {
+  background: var(--dim-human-text);
+  color: var(--text-inverse);
+  border-color: var(--dim-human-text);
+}
+
+.ownership-pill[data-value="AI"].active {
+  background: var(--dim-ai-text);
+  color: var(--text-inverse);
+  border-color: var(--dim-ai-text);
+}
+
+.ownership-pill[data-value="Both"].active {
+  background: var(--dim-both-text);
+  color: var(--text-inverse);
+  border-color: var(--dim-both-text);
+}

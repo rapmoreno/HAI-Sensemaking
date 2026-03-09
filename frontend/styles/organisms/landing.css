@@ -1,0 +1,77 @@
+/**
+ * Module: organisms/landing.css
+ * Type: Organism
+ * Purpose: Landing page hero and mode selection grid layout
+ *
+ * Depends on: atoms/tokens-semantic.css, molecules/card.css
+ * Used by: index.html
+ * Side effects: None
+ */
+
+.landing-hero {
+  text-align: center;
+  padding-top: var(--sp-12);
+}
+
+.landing-hero__title {
+  font-size: var(--raw-text-4xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.03em;
+}
+
+.landing-hero__subtitle {
+  margin-top: var(--sp-3);
+  font-size: var(--raw-text-lg);
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.mode-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--sp-6);
+  margin-top: var(--sp-8);
+}
+
+.mode-card {
+  padding: var(--sp-8);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-4);
+}
+
+.mode-card__icon {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--raw-text-2xl);
+}
+
+.mode-card__icon--solo {
+  background: linear-gradient(135deg, var(--primary-base), var(--primary-light));
+  color: var(--secondary-base);
+}
+
+.mode-card__icon--facilitated {
+  background: linear-gradient(135deg, var(--secondary-base), var(--secondary-dark));
+  color: var(--primary-base);
+}
+
+.mode-card__title {
+  font-size: var(--raw-text-xl);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.mode-card__desc {
+  font-size: var(--raw-text-sm);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 300px;
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CanvasAnalysisResponse",
+  "type": "object",
+  "required": ["steps"],
+  "properties": {
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["step_id"],
+        "properties": {
+          "step_id": { "type": "string" },
+          "task_allocation": { "$ref": "#/$defs/dimensionResult" },
+          "risk_flagging": { "$ref": "#/$defs/dimensionResult" },
+          "trust_explainability": { "$ref": "#/$defs/dimensionResult" },
+          "handoff_points": { "$ref": "#/$defs/dimensionResult" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "dimensionResult": {
+      "type": "object",
+      "required": ["value", "rationale"],
+      "properties": {
+        "value": { "type": "string" },
+        "rationale": { "type": "string" }
+      }
+    }
+  }
+}

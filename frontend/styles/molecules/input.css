@@ -1,0 +1,46 @@
+/**
+ * Module: molecules/input.css
+ * Type: Molecule
+ * Purpose: Form field styles — inputs, textareas, selects, labels
+ *
+ * Depends on: atoms/tokens-semantic.css
+ * Used by: Canvas sidebar, step cards
+ * Side effects: None
+ */
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+}
+
+.field-label {
+  font-size: var(--raw-text-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.field-input,
+.field-textarea,
+.field-select {
+  padding: var(--sp-2) var(--sp-3);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: var(--raw-text-sm);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+
+.field-input:focus,
+.field-textarea:focus,
+.field-select:focus {
+  outline: none;
+  border-color: var(--secondary-base);
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
+}
+
+.field-textarea {
+  resize: vertical;
+  min-height: 80px;
+}

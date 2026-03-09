@@ -1,0 +1,61 @@
+<!-- No inline or internal CSS styles are allowed. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Human-AI Sensemaking Canvas</title>
+  <meta name="description" content="Map the division of labour between humans and AI systems. A strategic workshop tool by Raphael Moreno.">
+  <meta name="robots" content="index, follow">
+
+  <meta property="og:title" content="Human-AI Sensemaking Canvas">
+  <meta property="og:description" content="Map the division of labour between humans and AI systems.">
+  <meta property="og:type" content="website">
+
+  <link rel="stylesheet" href="/styles/reset.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+  <noscript><p>This site requires JavaScript to function. Please enable JavaScript in your browser.</p></noscript>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="page-wrapper">
+    <header class="site-header">
+      <div class="site-header__logo">HAI <span>Canvas</span></div>
+    </header>
+
+    <main id="main-content" class="site-main">
+      <div class="landing-hero">
+        <h1 class="landing-hero__title">Human-AI Sensemaking Canvas</h1>
+        <p class="landing-hero__subtitle">Map the division of labour between humans and AI.<br>Make the split explicit, visual, and actionable.</p>
+      </div>
+
+      <div class="mode-grid">
+        <a href="/canvas.html?mode=solo" class="card card--interactive mode-card">
+          <div class="mode-card__icon mode-card__icon--solo" aria-hidden="true">&#9998;</div>
+          <h2 class="mode-card__title">Solo Mode</h2>
+          <p class="mode-card__desc">Map a process independently. Get AI-powered analysis across four lenses and export a professional report.</p>
+          <span class="btn btn-primary btn-lg">Start Solo</span>
+        </a>
+
+        <a href="/canvas.html?mode=facilitated" class="card card--interactive mode-card">
+          <div class="mode-card__icon mode-card__icon--facilitated" aria-hidden="true">&#9881;</div>
+          <h2 class="mode-card__title">Facilitated Mode</h2>
+          <p class="mode-card__desc">Guide a team through structured analysis. Step-by-step prompts help surface the hard questions about human-AI collaboration.</p>
+          <span class="btn btn-accent btn-lg">Start Facilitated</span>
+        </a>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      Human-AI Sensemaking Canvas &mdash; Raphael Moreno / HCC Temus
+    </footer>
+  </div>
+
+  <script type="module" src="/scripts/main.js" defer></script>
+</body>
+</html>

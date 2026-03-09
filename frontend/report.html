@@ -1,0 +1,103 @@
+<!-- No inline or internal CSS styles are allowed. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Report — HAI Sensemaking</title>
+  <meta name="description" content="Human-AI Sensemaking analysis report.">
+  <meta name="robots" content="noindex">
+
+  <link rel="stylesheet" href="/styles/reset.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+  <noscript><p>This site requires JavaScript to function. Please enable JavaScript in your browser.</p></noscript>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="page-wrapper">
+    <header class="site-header">
+      <a href="/" class="site-header__logo">HAI <span>Canvas</span></a>
+      <div class="site-header__badge">Report</div>
+    </header>
+
+    <main id="main-content" class="site-main">
+      <div id="report-loading" class="report-loading">
+        <div class="spinner"></div>
+        <p class="report-loading__text">Generating report&hellip;</p>
+      </div>
+
+      <div id="report-error" class="report-error" hidden>
+        <p class="report-error__text">Failed to generate report.</p>
+        <button id="btn-retry" class="btn btn-secondary" type="button">Retry</button>
+        <a href="/canvas.html" class="btn btn-ghost">Back to Canvas</a>
+      </div>
+
+      <article id="report-content" class="report" hidden>
+        <div class="report__header">
+          <h1 id="report-title" class="report__title"></h1>
+          <p id="report-meta" class="report__meta"></p>
+        </div>
+
+        <section class="report__section">
+          <h2 class="report__section-title">Executive Summary</h2>
+          <p id="report-exec-summary" class="report__body"></p>
+        </section>
+
+        <section class="report__section">
+          <h2 class="report__section-title">Process Overview</h2>
+          <p id="report-overview" class="report__body"></p>
+        </section>
+
+        <section class="report__section">
+          <h2 class="report__section-title">Step-by-Step Analysis</h2>
+          <div class="report__table-wrap">
+            <table class="report__table">
+              <thead>
+                <tr>
+                  <th>Step</th>
+                  <th>Allocation</th>
+                  <th>Risk</th>
+                  <th>Trust</th>
+                  <th>Handoff</th>
+                </tr>
+              </thead>
+              <tbody id="report-steps-body"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="report__section">
+          <h2 class="report__section-title">Key Risks</h2>
+          <ul id="report-risks" class="report__list"></ul>
+        </section>
+
+        <section class="report__section">
+          <h2 class="report__section-title">Recommendations</h2>
+          <ul id="report-recs" class="report__list"></ul>
+        </section>
+
+        <section class="report__section">
+          <h2 class="report__section-title">Trust Summary</h2>
+          <p id="report-trust" class="report__body"></p>
+        </section>
+      </article>
+    </main>
+
+    <nav class="canvas-action-bar" aria-label="Report actions">
+      <div class="action-bar__left">
+        <a href="/canvas.html" class="btn btn-ghost" id="btn-back-canvas">Back to Canvas</a>
+      </div>
+      <div class="action-bar__right">
+        <button id="btn-export-pdf" class="btn btn-accent" type="button" disabled>Export PDF</button>
+      </div>
+    </nav>
+  </div>
+
+  <script type="module" src="/scripts/main.js" defer></script>
+</body>
+</html>

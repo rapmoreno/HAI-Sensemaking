@@ -1,0 +1,38 @@
+/**
+ * Module: molecules/toast.css
+ * Type: Molecule
+ * Purpose: Toast notification styles
+ *
+ * Depends on: atoms/tokens-semantic.css
+ * Used by: effect.toast.js
+ * Side effects: None
+ */
+
+.toast-container {
+  position: fixed;
+  top: var(--sp-4);
+  right: var(--sp-4);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.toast {
+  padding: var(--sp-3) var(--sp-4);
+  border-radius: var(--radius-md);
+  font-size: var(--raw-text-sm);
+  font-weight: 500;
+  box-shadow: var(--shadow-overlay);
+  animation: toast-in 0.3s var(--ease-out);
+  max-width: 360px;
+}
+
+.toast--error { background: var(--error-light); color: var(--error-dark); border: 1px solid #FECACA; }
+.toast--success { background: var(--success-light); color: var(--success-dark); border: 1px solid #BBF7D0; }
+.toast--info { background: var(--info-light); color: var(--info-dark); border: 1px solid #BFDBFE; }
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}

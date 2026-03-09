@@ -1,0 +1,55 @@
+/**
+ * Module: molecules/button.css
+ * Type: Molecule
+ * Purpose: Button variants — primary, secondary, accent, ghost
+ *
+ * Depends on: atoms/tokens-semantic.css
+ * Used by: All pages
+ * Side effects: None
+ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  padding: var(--sp-3) var(--sp-6);
+  border-radius: var(--radius-md);
+  font-size: var(--raw-text-sm);
+  font-weight: 600;
+  transition: all var(--duration-fast) var(--ease-out);
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--primary-base);
+  color: var(--text-inverse);
+}
+.btn-primary:hover { background: var(--primary-light); box-shadow: var(--shadow-raised); }
+
+.btn-accent {
+  background: var(--secondary-base);
+  color: var(--primary-base);
+}
+.btn-accent:hover { background: var(--secondary-dark); color: var(--text-inverse); box-shadow: var(--shadow-raised); }
+
+.btn-secondary {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1.5px solid var(--border);
+}
+.btn-secondary:hover { border-color: var(--primary-light); box-shadow: var(--shadow); }
+
+.btn-ghost {
+  color: var(--text-secondary);
+}
+.btn-ghost:hover { color: var(--text-primary); background: var(--bg-muted); }
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.btn-sm { padding: var(--sp-2) var(--sp-3); font-size: var(--raw-text-xs); }
+.btn-lg { padding: var(--sp-4) var(--sp-8); font-size: var(--raw-text-base); }

@@ -1,0 +1,22 @@
+/**
+ * Module: molecules/spinner.css
+ * Type: Molecule
+ * Purpose: Loading spinner
+ *
+ * Depends on: atoms/tokens-semantic.css
+ * Used by: Analyse button loading state
+ * Side effects: None
+ */
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2.5px solid var(--bg-muted);
+  border-top-color: var(--secondary-base);
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

@@ -1,0 +1,138 @@
+/**
+ * Module: organisms/facilitated.css
+ * Type: Organism
+ * Purpose: Facilitated mode — intro overlay, guided panel, progress bar
+ *
+ * Depends on: atoms/tokens-semantic.css
+ * Used by: canvas.html (facilitated mode)
+ * Side effects: None
+ */
+
+/* --- Intro overlay --- */
+.facilitated-intro {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 27, 45, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  backdrop-filter: blur(4px);
+}
+
+.facilitated-intro[hidden] {
+  display: none;
+}
+
+.facilitated-intro__card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-xl);
+  padding: var(--sp-10) var(--sp-8);
+  max-width: 36rem;
+  width: 90%;
+  text-align: center;
+  box-shadow: var(--shadow-overlay);
+}
+
+.facilitated-intro__icon {
+  font-size: 3rem;
+  margin-bottom: var(--sp-4);
+  opacity: 0.7;
+}
+
+.facilitated-intro__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--sp-3);
+}
+
+.facilitated-intro__body {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: var(--sp-6);
+}
+
+.facilitated-intro__body strong {
+  color: var(--text-primary);
+}
+
+/* --- Progress bar --- */
+.facilitated-progress {
+  background: var(--bg-muted);
+  border-bottom: 1px solid var(--border);
+  padding: var(--sp-2) var(--sp-4);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.facilitated-progress[hidden] {
+  display: none;
+}
+
+.facilitated-progress__label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  min-width: 7rem;
+}
+
+.facilitated-progress__track {
+  flex: 1;
+  height: 6px;
+  background: var(--border);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.facilitated-progress__fill {
+  height: 100%;
+  background: var(--secondary-base);
+  border-radius: var(--radius-full);
+  transition: width var(--duration-normal) var(--ease-out);
+  width: 0%;
+}
+
+/* --- Guide panel --- */
+.facilitated-guide {
+  background: var(--secondary-light);
+  border: 1px solid var(--secondary-base);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-4);
+  margin-bottom: var(--sp-4);
+}
+
+.facilitated-guide[hidden] {
+  display: none;
+}
+
+.facilitated-guide__phase {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--secondary-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--sp-1);
+}
+
+.facilitated-guide__instruction {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+.facilitated-guide__tip {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-top: var(--sp-2);
+  font-style: italic;
+}
+
+/* --- Nav buttons for facilitated steps --- */
+.facilitated-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--sp-3);
+}

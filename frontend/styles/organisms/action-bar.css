@@ -1,0 +1,31 @@
+/**
+ * Module: organisms/action-bar.css
+ * Type: Organism
+ * Purpose: Sticky bottom action bar layout
+ *
+ * Depends on: atoms/tokens-semantic.css
+ * Used by: canvas.html
+ * Side effects: None
+ */
+
+.canvas-action-bar {
+  position: sticky;
+  bottom: 0;
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border);
+  padding: var(--sp-3) var(--sp-4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  box-shadow: 0 -2px 8px rgba(15, 27, 45, 0.05);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  z-index: 10;
+}
+
+.action-bar__left,
+.action-bar__right {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}

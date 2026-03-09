@@ -1,0 +1,36 @@
+{
+  "dimensions": [
+    {
+      "id": "task_allocation",
+      "label": "Task Allocation",
+      "description": "Who owns this step — Human, AI, or shared responsibility?",
+      "ai_instruction": "Suggest whether this step should be owned by a Human, AI, or Both. Provide a 1-sentence rationale grounded in the nature of the task.",
+      "values": ["Human", "AI", "Both"],
+      "badge_style": "ownership"
+    },
+    {
+      "id": "risk_flagging",
+      "label": "Risk Flagging",
+      "description": "Is this step at risk of over-automation or ethical harm?",
+      "ai_instruction": "Assess whether this step risks over-automation, loss of human accountability, or ethical harm if AI-handled. Rate Low/Medium/High and explain in 1-2 sentences.",
+      "values": ["Low", "Medium", "High"],
+      "badge_style": "traffic-light"
+    },
+    {
+      "id": "trust_explainability",
+      "label": "Trust & Explainability",
+      "description": "How important is it that AI decisions here are explainable to users?",
+      "ai_instruction": "Rate the explainability requirement for any AI involvement at this step. Consider: will users or operators need to understand why the AI decided what it did? Rate Low/Medium/High and note if XAI mechanisms (explanations, confidence scores, audit trails) are needed.",
+      "values": ["Low", "Medium", "High"],
+      "badge_style": "traffic-light"
+    },
+    {
+      "id": "handoff_points",
+      "label": "Handoff Points",
+      "description": "Should a human take over from AI at this step? Under what conditions?",
+      "ai_instruction": "Determine if this step requires a human handoff point — a moment where a human must review, approve, or intervene before the process continues. If yes, describe the trigger condition (e.g. 'when confidence is below threshold', 'when emotional content is detected', 'always for high-value decisions').",
+      "values": ["Yes", "No"],
+      "badge_style": "boolean"
+    }
+  ]
+}

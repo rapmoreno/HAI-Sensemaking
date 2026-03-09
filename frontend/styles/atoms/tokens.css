@@ -1,0 +1,90 @@
+/**
+ * Module: atoms/tokens.css
+ * Type: Atom
+ * Purpose: Raw palette values — colors, fonts, spacing, shadows, z-index, transitions
+ *
+ * Depends on: Nothing
+ * Used by: atoms/tokens-semantic.css
+ * Side effects: None
+ *
+ * NEVER use these directly in molecules or organisms. Use semantic tokens.
+ */
+
+:root {
+  /* Raw palette */
+  --raw-navy: #0F1B2D;
+  --raw-navy-light: #1A2A42;
+  --raw-navy-muted: #2A3F5F;
+  --raw-amber: #F59E0B;
+  --raw-amber-light: #FCD34D;
+  --raw-amber-dark: #D97706;
+  --raw-white: #FFFFFF;
+  --raw-grey-50: #F9FAFB;
+  --raw-grey-100: #F3F4F6;
+  --raw-grey-200: #E5E7EB;
+  --raw-grey-300: #D1D5DB;
+  --raw-grey-400: #9CA3AF;
+  --raw-grey-500: #6B7280;
+  --raw-grey-600: #4B5563;
+  --raw-grey-700: #374151;
+
+  /* Dimension palette */
+  --raw-blue: #3B82F6;
+  --raw-purple: #8B5CF6;
+  --raw-teal: #14B8A6;
+  --raw-green: #22C55E;
+  --raw-red: #EF4444;
+  --raw-orange: #F97316;
+
+  /* Tints */
+  --raw-blue-tint: #EFF6FF;
+  --raw-purple-tint: #F5F3FF;
+  --raw-teal-tint: #F0FDFA;
+  --raw-green-tint: #F0FDF4;
+  --raw-amber-tint: #FFFBEB;
+  --raw-red-tint: #FEF2F2;
+  --raw-orange-tint: #FFF7ED;
+
+  /* Typography */
+  --raw-font-body: 'DM Sans', 'Inter', system-ui, sans-serif;
+  --raw-font-mono: 'Fira Code', monospace;
+
+  --raw-text-xs: 0.75rem;
+  --raw-text-sm: 0.875rem;
+  --raw-text-base: 1rem;
+  --raw-text-lg: 1.125rem;
+  --raw-text-xl: 1.25rem;
+  --raw-text-2xl: 1.5rem;
+  --raw-text-3xl: 2rem;
+  --raw-text-4xl: 2.5rem;
+
+  /* Spacing — 4px base */
+  --raw-sp-1: 0.25rem;
+  --raw-sp-2: 0.5rem;
+  --raw-sp-3: 0.75rem;
+  --raw-sp-4: 1rem;
+  --raw-sp-5: 1.25rem;
+  --raw-sp-6: 1.5rem;
+  --raw-sp-8: 2rem;
+  --raw-sp-10: 2.5rem;
+  --raw-sp-12: 3rem;
+  --raw-sp-16: 4rem;
+  --raw-sp-20: 5rem;
+
+  /* Radius */
+  --raw-radius-sm: 0.375rem;
+  --raw-radius-md: 0.5rem;
+  --raw-radius-lg: 0.75rem;
+  --raw-radius-xl: 1rem;
+  --raw-radius-full: 9999px;
+
+  /* Shadows */
+  --raw-shadow-sm: 0 1px 2px rgba(15, 27, 45, 0.05);
+  --raw-shadow-md: 0 4px 6px -1px rgba(15, 27, 45, 0.07), 0 2px 4px -2px rgba(15, 27, 45, 0.05);
+  --raw-shadow-lg: 0 10px 15px -3px rgba(15, 27, 45, 0.08), 0 4px 6px -4px rgba(15, 27, 45, 0.04);
+
+  /* Transitions */
+  --raw-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --raw-duration-fast: 150ms;
+  --raw-duration-normal: 250ms;
+}

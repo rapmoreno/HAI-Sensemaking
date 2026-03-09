@@ -1,0 +1,158 @@
+/**
+ * Module: organisms/report.css
+ * Type: Organism
+ * Purpose: Report page layout — loading, error, content sections, table
+ *
+ * Depends on: atoms/tokens-semantic.css
+ * Used by: report.html
+ * Side effects: None
+ */
+
+/* --- Loading state --- */
+.report-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 40vh;
+  gap: var(--sp-4);
+}
+
+.report-loading__text {
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+/* --- Error state --- */
+.report-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 40vh;
+  gap: var(--sp-4);
+  text-align: center;
+}
+
+.report-error__text {
+  color: var(--error-base);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* --- Report content --- */
+.report {
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: var(--sp-6) var(--sp-4);
+}
+
+.report__header {
+  border-bottom: 3px solid var(--secondary-base);
+  padding-bottom: var(--sp-4);
+  margin-bottom: var(--sp-8);
+}
+
+.report__title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 var(--sp-2);
+  line-height: 1.2;
+}
+
+.report__meta {
+  font-size: 0.8rem;
+  color: var(--text-tertiary);
+}
+
+.report__section {
+  margin-bottom: var(--sp-8);
+}
+
+.report__section-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: var(--sp-2);
+  margin-bottom: var(--sp-3);
+}
+
+.report__body {
+  color: var(--text-primary);
+  line-height: 1.7;
+  white-space: pre-line;
+}
+
+/* --- Table --- */
+.report__table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.report__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.report__table thead th {
+  background: var(--primary-base);
+  color: var(--text-inverse);
+  padding: var(--sp-2) var(--sp-3);
+  text-align: left;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+}
+
+.report__table tbody td {
+  padding: var(--sp-2) var(--sp-3);
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.report__table .step-row__title {
+  font-weight: 600;
+}
+
+.report__table .step-row__summary {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-style: italic;
+  background: var(--bg-muted);
+}
+
+/* --- Lists --- */
+.report__list {
+  padding-left: var(--sp-5);
+  list-style: disc;
+}
+
+.report__list li {
+  margin-bottom: var(--sp-2);
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .report {
+    padding: var(--sp-4) var(--sp-3);
+  }
+
+  .report__title {
+    font-size: 1.35rem;
+  }
+
+  .report__table {
+    font-size: 0.75rem;
+  }
+
+  .report__table thead th,
+  .report__table tbody td {
+    padding: var(--sp-1) var(--sp-2);
+  }
+}

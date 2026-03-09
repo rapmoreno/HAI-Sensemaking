@@ -1,0 +1,57 @@
+/**
+ * Module: atoms/base.css
+ * Type: Atom
+ * Purpose: Default element styles beyond reset — uses semantic tokens only
+ *
+ * Depends on: atoms/tokens-semantic.css
+ * Used by: All pages
+ * Side effects: None
+ */
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  background: var(--bg-page);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+a {
+  color: var(--text-link);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--secondary-base);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: var(--secondary-light);
+  color: var(--text-primary);
+}
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--sp-4);
+  background: var(--primary-base);
+  color: var(--text-inverse);
+  padding: var(--sp-2) var(--sp-4);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  z-index: 200;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: var(--sp-2);
+}
